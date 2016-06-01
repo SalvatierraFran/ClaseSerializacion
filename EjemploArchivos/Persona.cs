@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace EjemploArchivos
 {
-    public class Persona
+    [XmlInclude(typeof(Profesor))]
+    [XmlInclude(typeof(Alumno))]
+    public class Persona:SerHumano
     {
         /*Atributos*/
         public string nombre;
@@ -14,7 +18,7 @@ namespace EjemploArchivos
         public Persona()
         { }
 
-        public Persona(string Nombre, string Apellido)
+        public Persona(string Nombre, string Apellido, string dni):base(dni)
         {
             this.apellido = Apellido;
             this.nombre = Nombre;

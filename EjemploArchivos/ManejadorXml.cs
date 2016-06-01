@@ -82,5 +82,62 @@ namespace EjemploArchivos
             }
             return true;
         }
+
+        public static bool GuardarAula3(Aula unAula)
+        {
+            try
+            {
+                using (XmlTextWriter Escritor = new XmlTextWriter("Aula3.Xml", Encoding.UTF8))
+                {
+                    XmlSerializer Serializador = new XmlSerializer(typeof(Aula));
+
+                    Serializador.Serialize(Escritor, unAula);
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static Aula CargarAula()
+        {
+            Aula AulaAuxiliar=null;
+            try
+            {
+                using (XmlTextReader Lector = new XmlTextReader("Aula2.Xml"))
+                {
+                    XmlSerializer Serializador = new XmlSerializer(typeof(Aula));
+
+                    AulaAuxiliar = (Aula)Serializador.Deserialize(Lector);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return AulaAuxiliar;
+        }
+
+        public static bool GuardarEstacionamiento(Estacionamiento UnEstacionamiento)
+        {
+            try
+            {
+                using (XmlTextWriter Escritor = new XmlTextWriter("Estacionamiento.Xml", Encoding.UTF8))
+                {
+                    XmlSerializer Serializador = new XmlSerializer(typeof(Estacionamiento));
+
+                    Serializador.Serialize(Escritor, UnEstacionamiento);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return true;
+        }
     }
 }
